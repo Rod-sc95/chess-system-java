@@ -12,11 +12,11 @@ public class ChessMatch {
 		initialSetup(); // Chamando dentro do construtor o method de inicio da partida
 	}
 	
-	public ChessPiece[][] getPieces(){
-		ChessPiece[][] mat = new ChessPiece[board.getRow()][board.getColumns()];
-		for (int i=0; i<board.getRow(); i++) {
+	public ChessPiece[][] getPieces(){ // Retorna a matriz de peças de xadrez
+		ChessPiece[][] mat = new ChessPiece[board.getRow()][board.getColumns()]; // Atribuindo valor a matriz atrves da quantidade de coluna e linha do tabuleiro
+		for (int i=0; i<board.getRow(); i++) { // Para cada peça do meu tabuleiro, será feito o downcasting de Piece para ChessPiece
 			for (int j=0; j<board.getColumns(); j++) {
-				mat [i][j] = (ChessPiece) board.piece(i,j); //Downcast através do ChessPiece
+				mat [i][j] = (ChessPiece) board.piece(i,j); //Downcast para ChessPiece
 			}
 		}
 		return mat;
@@ -28,8 +28,18 @@ public class ChessMatch {
 	}
 	
 	private void initialSetup() {
-		placeNewPiece('b', 6, new Rook(board, Color.WHITE));
-		placeNewPiece('e', 8, new King (board, Color.BLACK));
-		placeNewPiece('e',1, new King(board, Color.WHITE));
+		placeNewPiece('c', 1, new Rook(board, Color.WHITE));
+        placeNewPiece('c', 2, new Rook(board, Color.WHITE));
+        placeNewPiece('d', 2, new Rook(board, Color.WHITE));
+        placeNewPiece('e', 2, new Rook(board, Color.WHITE));
+        placeNewPiece('e', 1, new Rook(board, Color.WHITE));
+        placeNewPiece('d', 1, new King(board, Color.WHITE));
+
+        placeNewPiece('c', 7, new Rook(board, Color.BLACK));
+        placeNewPiece('c', 8, new Rook(board, Color.BLACK));
+        placeNewPiece('d', 7, new Rook(board, Color.BLACK));
+        placeNewPiece('e', 7, new Rook(board, Color.BLACK));
+        placeNewPiece('e', 8, new Rook(board, Color.BLACK));
+        placeNewPiece('d', 8, new King(board, Color.BLACK));
 	}
 }
