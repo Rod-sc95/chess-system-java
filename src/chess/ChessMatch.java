@@ -25,9 +25,10 @@ public class ChessMatch {
 	}
 	
 	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
-		Position source = sourcePosition.toPosition();
-		Position target = targetPosition.toPosition();
-		validateSourcePosition(source);
+		Position source = sourcePosition.toPosition(); // Posição de origem
+		Position target = targetPosition.toPosition(); // Posição de destino
+		validateSourcePosition(source);	// Validação da posição de origem
+		validateTargetPosition(source,target); // Validação da posição de destino
 		Piece capturedPiece = makeMove(source,target);
 		return (ChessPiece)capturedPiece;
 	}
@@ -41,12 +42,18 @@ public class ChessMatch {
 	
 	private void validateSourcePosition (Position position) {
 		if (!board.thereIsAPiace(position)) {
-			throw new ChessException("There is no piece on source position");
+			throw new ChessException("There is no piece on source position"); // Senão existe peça na posição de origem
 		}
-		if (board.piece(position).isThereAnyPossibleMove()) {
-			throw new ChessException ("There is no pobbile moves for the chosen pice");
+		if (!board.piece(position).isThereAnyPossibleMove()) {
+			throw new ChessException ("There is no pobbile moves for the chosen pice"); // Senão existe movimentos possíveis da peça
 		}
 	}
+	
+	private void validateTargetPosition(Position source, Position target) {
+		if (!board.piece(source).possibleMove(target));
+		throw new ChessException ("The chosen piece can't move to target position");
+	}
+	
 	// Metodo que inclui as peças, passando as coordenadas do Xadrez (e não da matriz)
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		board.placePiece(piece, new ChessPosition(column, row).toPosition());
